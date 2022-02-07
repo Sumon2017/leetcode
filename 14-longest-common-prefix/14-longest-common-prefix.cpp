@@ -2,7 +2,7 @@ class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
         
-        int tmp1 ;
+        int tmp1;
         
         string answer = "" ;
         
