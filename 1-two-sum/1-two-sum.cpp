@@ -2,44 +2,31 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         
-        int num1,num2;
-        
-        unordered_map<int,int>table;
+        vector<pair<int,int> >my_nums;
         
         for( int i = 0 ; i < nums.size() ; i++ ){
-            table[nums[i]] += 1 ;
+            my_nums.push_back({nums[i],i});
         }
         
-        for( int i = 0 ; i < nums.size() ; i++ ){
-            if(nums[i] != target-nums[i] && table[target-nums[i]] >= 1){
-                num1 = nums[i];
-                num2 = target-nums[i];
-                break;
-            }
-            if(nums[i] == target-nums[i] && table[target-nums[i]] >= 2){
-                num1 = nums[i];
-                num2 = nums[i];
-                break;
-            }
+        sort(my_nums.begin(),my_nums.end());
+        
+        int start=0 , end = nums.size() -1 ;
+        
+        while(start != end){
+            
+            if(my_nums[start].first + my_nums[end].first == target)break;
+            
+            else if(my_nums[start].first + my_nums[end].first > target)end--;
+            
+            else start++;
+            
         }
         
         vector<int>answer;
         
-        for( int i = 0 ; i < nums.size() ; i++ ){
-            if(num1 == nums[i]){
-                answer.push_back(i);
-                break;
-            }
-        }
+        answer.push_back(my_nums[start].second);
         
-        for( int i = 0 ; i < nums.size() ; i++ ){
-            if(i==answer[0])continue;
-            
-            if(num2 == nums[i]){
-                answer.push_back(i);
-                break;
-            }
-        }
+        answer.push_back(my_nums[end].second);
         
         return answer;
     }
