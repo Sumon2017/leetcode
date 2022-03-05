@@ -21,10 +21,7 @@ public:
         long answer = -1e9-1;
         long temp;
         for(int i = 0 ; i < q_sum.size() ; i++){
-            if(i == 0)
-                temp = q_sum[i];
-            else
-                temp = q_sum[i] - min_arr[i];
+            temp = q_sum[i] - min_arr[i];
             answer = max(answer , temp );
         }
         return (int)answer;
