@@ -21,12 +21,12 @@ public:
 
 class Solution {
     
-    map<int,Node*>mymap;
+    vector<Node*>mymap;
     
     void dfs(Node* node , Node* deep_copy){
         
         for(int i=0;i<node->neighbors.size();i++){
-            if(mymap.find(node->neighbors[i]->val) == mymap.end()){
+            if(mymap[node->neighbors[i]->val] == nullptr){
                 Node* temp = new Node(node->neighbors[i]->val);
                 deep_copy->neighbors.push_back(temp);
                 mymap[temp->val]=temp;
@@ -42,7 +42,7 @@ class Solution {
 public:
     Node* cloneGraph(Node* node) {
         if(node == nullptr)return nullptr;
-        mymap.clear();
+        for(int i=0 ; i<=101; i++)mymap.push_back(nullptr);
         Node* first = new Node(node->val);
         mymap[node->val]=first;
         dfs(node,first);
