@@ -4,6 +4,7 @@ class Solution {
     int atlantic[201][201];
     int visited[201][201];
     void dfs(int i,int j,vector<vector<int> >& heights,int ocean){
+        if( (ocean==1 and pacific[i][j]==1) or (ocean==2 and atlantic[i][j]==1) )return;
         visited[i][j]=1;
         if(ocean == 1)pacific[i][j]=1;
         else atlantic[i][j]=1;
@@ -37,7 +38,7 @@ public:
         vector<vector<int > >answer;
         for(int i=0;i<r;i++){
             for(int j=0;j<c;j++){
-                if(pacific[i][j]==1 and atlantic[i][j])answer.push_back(vector<int>{i,j});
+                if(pacific[i][j]==1 and atlantic[i][j]==1)answer.push_back(vector<int>{i,j});
             }
         }
         return answer;
