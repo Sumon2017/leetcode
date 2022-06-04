@@ -10,34 +10,26 @@
  * };
  */
 class Solution {
-    vector<int>bigtree;
-    vector<int>smalltree;
-    int salt,sub_root_val;
-    void dfs_tour(TreeNode* current,char side,vector<int>&tree){
-        salt = (side == 'l') ? 100000 : 0 ;
-        if(current->val == sub_root_val)salt=0;
-        tree.push_back(current->val + salt);
-        if(current->left != nullptr)dfs_tour(current->left,'l',tree);
-        if(current->right != nullptr)dfs_tour(current->right,'r',tree);
-        tree.push_back(current->val + salt);
+    TreeNode* sub_root = nullptr;
+    bool flag = false;
+    void dfs(TreeNode* current){
+        if(isSame(current,sub_root)){
+            flag=true;
+            return;
+        }
+        if(current->left != nullptr)dfs(current->left);
+        if(current->right != nullptr)dfs(current->right);
+    }
+    bool isSame(TreeNode* a,TreeNode* b){
+        if(a == nullptr || b== nullptr){
+            return (a == nullptr && b == nullptr);
+        }
+        return ( a->val == b->val && isSame(a->left,b->left) && isSame(a->right,b->right) );
     }
 public:
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
-        sub_root_val = subRoot->val;
-        dfs_tour(root,'m',bigtree);
-        dfs_tour(subRoot,'m',smalltree);
-        if(bigtree.size() < smalltree.size())return false;
-        bool flag;
-        for(int i=0;i<=bigtree.size()-smalltree.size();i++){
-            flag = true;
-            for(int j=0;j<smalltree.size();j++){
-                if(bigtree[i+j] != smalltree[j]){
-                    flag = false;
-                    break;
-                }
-            }
-            if(flag == true)break;
-        }
+        sub_root = subRoot;
+        dfs(root);
         return flag;
     }
 };
