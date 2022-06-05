@@ -6,9 +6,9 @@ class Solution {
             val =-1;
         }
     };
-    unordered_map<string,myInt>mymap;
+    map<string,myInt>mymap;
     string input;
-    vector<unordered_map<string,myInt> >look_up;
+    vector<map<string,myInt> >look_up;
     bool func(int idx=0,string current=""){
         if(look_up[idx][current].val != -1)return look_up[idx][current].val;
         if(idx == input.size()){
@@ -25,7 +25,7 @@ class Solution {
     }
 public:
     bool wordBreak(string s, vector<string>& wordDict) {
-        for(int i=0;i<=301;i++)look_up.push_back(unordered_map<string,myInt>());
+        for(int i=0;i<=301;i++)look_up.push_back(map<string,myInt>());
         input = s;
         for(auto x:wordDict){
             mymap[x].val=1;
