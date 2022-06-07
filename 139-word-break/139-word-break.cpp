@@ -7,6 +7,7 @@ public:
             for(auto word:wordDict){
                 if(i+word.size() <= s.size() and s.substr(i,word.size()) == word){
                     dp[i] = dp[i] | dp[i+word.size()];
+                    if(dp[i])break;
                 }
             }
         }
