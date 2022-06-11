@@ -19,6 +19,7 @@ public:
         int ss = nums.size();
         for(int i=-1;i<ss;i++){
             if(i != -1)current = current + nums[i];
+            if(current > x)break;
             maptemp = ourmap[x-current];
             if(maptemp != 0){
                 a = i;
