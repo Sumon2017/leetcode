@@ -5,13 +5,17 @@ public:
             return (nums[0] == x) ? 1 : -1 ;
         }
         int current = 0 ;
-        vector<int>p_sum(nums.size());
+        vector<int>p_sum(nums.size(),0);
         for(int i=nums.size()-1;i>=0;i--){
             current = current + nums[i];
+            if(current > x)break;
             p_sum[i] = current;
         }
         unordered_map<int,int>ourmap;
-        for(int i=0;i<p_sum.size();i++)ourmap[p_sum[i]]=i;
+        for(int i=p_sum.size()-1;i>=0;i--){
+            if(p_sum[i]==0)break;
+            ourmap[p_sum[i]]=i;
+        }
         ourmap[0] = p_sum.size();
         current = 0 ;
         int ans = 100000+1;
