@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maximumUniqueSubarray(vector<int>& nums) {
-        unordered_map<int,bool>lookup;
+        vector<bool>lookup(10000+1,false);
         int l=0,r=0,ans=-1,current_sum=0,size=nums.size();
         while(r<size){
             while(lookup[nums[r]]){
