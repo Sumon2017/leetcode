@@ -8,7 +8,7 @@ class Solution {
     };
     string temp="";
     vector<vector<string> >l_list;
-    vector<map<string,cInt> >dp;
+    vector<unordered_map<string,cInt> >dp;
     int sol(int index,string cur){
         if(dp[index][cur].val != -1)return dp[index][cur].val;
         int ans = 0;
@@ -29,7 +29,7 @@ class Solution {
 public:
     int longestStrChain(vector<string>& words) {
         for(int i=1;i<=18;i++)l_list.push_back(vector<string>());
-        for(int i=1;i<=18;i++)dp.push_back(map<string,cInt>());
+        for(int i=1;i<=18;i++)dp.push_back(unordered_map<string,cInt>());
         for(auto item:words)l_list[item.size()].push_back(item);
         vector<int>second_dp(18,-1);
         for(int i=1;i<=16;i++){
