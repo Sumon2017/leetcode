@@ -18,7 +18,9 @@ public:
             dup.push_back(new ListNode(current->val));
             current = current -> next;
         }
-        reverse(dup.begin()+l,dup.begin()+r+1);
+        for(int i=0;i<=(r-l)/2;i++){
+            swap(dup[l+i],dup[r-i]);
+        }
         for(int i=1;i<dup.size();i++){
             dup[i-1]->next = dup[i];
         }
